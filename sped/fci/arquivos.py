@@ -22,9 +22,9 @@ class ArquivoDigital(arquivos.ArquivoDigital):
         self._blocos['5'] = Bloco5()
         self._blocos['9'] = Bloco9()
 
-        utf = (u"0001|Texto em caracteres UTF-8: (dígrafo BR)'ção',(dígrafo "
-               u"espanhol-enhe)'ñ',(trema)'Ü',(ordinais)'ªº',(ligamento s+z a"
-               u"lemão)'ß'.")
+        utf = ("0001|Texto em caracteres UTF-8: (dígrafo BR)'ção',(dígrafo "
+               "espanhol-enhe)'ñ',(trema)'Ü',(ordinais)'ªº',(ligamento s+z a"
+               "lemão)'ß'.")
         self.read_registro(utf)
         self.read_registro('|9900|0000|1')
         self.read_registro('|9900|0010|1')
@@ -41,7 +41,7 @@ class ArquivoDigital(arquivos.ArquivoDigital):
             registro_class = \
                 getattr(self.__class__.registros, 'Registro' + reg_id)
         except AttributeError:
-            raise RuntimeError(u"Arquivo inválido para FCI")
+            raise RuntimeError("Arquivo inválido para FCI")
 
         registro = registro_class(line)
         if registro.__class__ == self.__class__.registro_abertura:
@@ -65,19 +65,19 @@ class ArquivoDigital(arquivos.ArquivoDigital):
     def write_to(self, buffer):
 
         linha_abertura = self._registro_abertura.as_line()[1:]
-        buffer.write(linha_abertura + u'\r\n')
+        buffer.write(linha_abertura + '\r\n')
         reg_count = 2
-        for key in self._blocos.keys():
+        for key in list(self._blocos.keys()):
             bloco = self._blocos[key]
             reg_count += len(bloco.registros)
             for r in bloco.registros:
                 a = r.as_line()
                 a = a[1:]
-                buffer.write(a + u'\r\n')
+                buffer.write(a + '\r\n')
 
         self._registro_fechamento[2] = reg_count
         linha_fechamento = self._registro_fechamento.as_line()[1:]
-        buffer.write(linha_fechamento + u'\r\n')
+        buffer.write(linha_fechamento + '\r\n')
 
     def readfile(self, filename):
 
