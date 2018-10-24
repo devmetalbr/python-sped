@@ -9,7 +9,7 @@ test_root = os.path.dirname(os.path.abspath(__file__))
 os.chdir(test_root)
 sys.path.insert(0, os.path.dirname(test_root))
 sys.path.insert(0, test_root)
-
+from datetime import datetime
 from sped.efd.icms_ipi.arquivos import ArquivoDigital
 from sped.efd.icms_ipi.registros import Registro0100
 
@@ -45,9 +45,9 @@ class TestSpedPisCofins(unittest.TestCase):
 
         arq._registro_abertura.COD_VER = '010'
         arq._registro_abertura.COD_FIN = '0'
-        arq._registro_abertura.DT_INI = '01102016'
-        arq._registro_abertura.DT_FIN = '30102016'
-        arq._registro_abertura.NOME = 'KMEE INFORMATICA LTDA'
+        arq._registro_abertura.DT_INI = datetime(2018, 11, 1).date()
+        arq._registro_abertura.DT_FIN = datetime(2018, 11, 30).date()
+        arq._registro_abertura.NOME = 'OUTTECH SERVICES IT'
         arq._registro_abertura.CNPJ = '53.939.351/0001-29'
         arq._registro_abertura.CPF = '333.333.333-33'
         arq._registro_abertura.UF = 'SP'
@@ -68,6 +68,7 @@ class TestSpedPisCofins(unittest.TestCase):
 
         arq._blocos['0'].add(contabilista)
         self.assertEqual(txt, arq.getstring())
+        print arq.getstring()
 
 if __name__ == '__main__':
     unittest.main()

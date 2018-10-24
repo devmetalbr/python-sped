@@ -2,12 +2,12 @@
 
 
 import re
-
 from datetime import date
 from datetime import datetime
 from decimal import Decimal
 
 from six import string_types
+from unidecode import unidecode
 
 from .erros import CampoFixoError
 from .erros import CampoObrigatorioError
@@ -102,16 +102,26 @@ class CampoFixo(Campo):
 
 
 class CampoAlfanumerico(Campo):
-    def __init__(self, indice, nome, obrigatorio=False, tamanho=255):
+    def __init__(self, indice, nome, obrigatorio=False, tamanho=255, somente_numeros=False, zfill=False, upper=True):
         super(CampoAlfanumerico, self).__init__(indice, nome, obrigatorio)
         self._tamanho = tamanho
-
+        self._somente_numeros = somente_numeros
+        self._zill = zfill
+        self._upper = upper
     @property
     def tamanho(self):
         return self._tamanho
 
     def set(self, registro, valor):
         valor = valor or ''
+        if isinstance(valor, (str, unicode)):
+            valor = unidecode(valor)
+        if self._somente_numeros:
+            valor = re.sub('[\D]', '', valor)
+        if self._zill:
+            valor = valor.zfill(self._tamanho)
+        if self._upper:
+            valor = valor.upper()
         valor = valor[:self._tamanho]
         super(CampoAlfanumerico, self).set(registro, valor)
 
@@ -184,9 +194,21 @@ class CampoRegex(Campo):
             raise FormatoInvalidoError(registro, self.nome)
 
 
-class CampoCNPJ(Campo):
+class CampoInteiro(Campo):
+
     @staticmethod
     def validar(valor):
+        return valor.isdigit()
+
+    def set(self, registro, valor):
+        super(CampoInteiro, self).set(registro, str(valor))
+
+
+class CampoCNPJ(Campo):
+
+    @staticmethod
+    def validar(valor):
+        valor = re.sub('[\D]', '', valor)
         if len(valor) != 14:
             return False
 
@@ -210,10 +232,14 @@ class CampoCNPJ(Campo):
 
         return True
 
+    def set(self, registro, valor):
+        super(CampoCNPJ, self).set(registro, re.sub('[\D]', '', valor or ''))
+
 
 class CampoCPF(Campo):
     @staticmethod
     def validar(valor):
+        valor = re.sub('[\D]', '', valor)
         if len(valor) != 11:
             return False
 
@@ -237,10 +263,14 @@ class CampoCPF(Campo):
 
         return True
 
+    def set(self, registro, valor):
+        super(CampoCPF, self).set(registro, re.sub('[\D]', '', valor or ''))
+
 
 class CampoCPFouCNPJ(Campo):
     @staticmethod
     def validar(valor):
+        valor = re.sub('[\D]', '', valor)
         if len(valor) == 14:
             return CampoCNPJ.validar(valor)
         if len(valor) == 11:
