@@ -33,6 +33,7 @@ class Registro0000(Registro):
         Campo(17, 'IND_GRANDE_PORTE'),
         Campo(18, 'TIP_ECD'),
         Campo(19, 'COD_SCP'),
+        Campo(20, 'IDENT_MF')
     ]
 
 
@@ -469,6 +470,8 @@ class RegistroJ150(Registro):
         Campo(4, 'DESCR_COD_AGL'),
         CampoNumerico(5, 'VL_CTA', precisao=2),
         Campo(6, 'IND_VL'),
+        CampoNumerico(7, 'VL_CTA_ULT_DRE', precisao=2),
+        Campo(8, 'IND_VL_ULT_DRE'),
     ]
 
 

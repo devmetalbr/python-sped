@@ -1,9 +1,16 @@
 # -*- coding: utf-8 -*-
 
+from ...campos import (
+    Campo,
+    CampoAlfanumerico,
+    CampoCPF,
+    CampoCNPJ,
+    CampoData,
+    CampoFixo,
+    CampoNumerico,
+    CampoInteiro
+)
 from ...registros import Registro
-from ...campos import Campo
-from ...campos import CampoData
-from ...campos import CampoFixo
 
 
 class Registro0000(Registro):
@@ -12,20 +19,20 @@ class Registro0000(Registro):
     """
     campos = [
         CampoFixo(1, 'REG', '0000'),
-        Campo(2, 'COD_VER'),
-        Campo(3, 'COD_FIN'),
-        Campo(4, 'DT_INI'),
-        Campo(5, 'DT_FIN'),
-        Campo(6, 'NOME'),
-        Campo(7, 'CNPJ'),
-        Campo(8, 'CPF'),
-        Campo(9, 'UF'),
-        Campo(10, 'IE'),
-        Campo(11, 'COD_MUN'),
+        CampoAlfanumerico(2, 'COD_VER', obrigatorio=True, tamanho=3),
+        CampoAlfanumerico(3, 'COD_FIN', tamanho=1),
+        CampoData(4, 'DT_INI', obrigatorio=True),
+        CampoData(5, 'DT_FIN', obrigatorio=True),
+        CampoAlfanumerico(6, 'NOME', tamanho=100),
+        CampoCNPJ(7, 'CNPJ', obrigatorio=True),
+        CampoCPF(8, 'CPF', obrigatorio=True),
+        CampoAlfanumerico(9, 'UF', tamanho=2),
+        CampoAlfanumerico(10, 'IE', tamanho=14, somente_numeros=True),
+        CampoAlfanumerico(11, 'COD_MUN', obrigatorio=True, tamanho=14),
         Campo(12, 'IM'),
-        Campo(13, 'SUFRAMA'),
-        Campo(14, 'IND_PERFIL'),
-        Campo(15, 'IND_ATIV'),
+        CampoAlfanumerico(13, 'SUFRAMA', obrigatorio=True, tamanho=9),
+        CampoAlfanumerico(14, 'IND_PERFIL', tamanho=1),
+        CampoAlfanumerico(15, 'IND_ATIV', tamanho=1),
     ]
 
 
@@ -45,15 +52,15 @@ class Registro0005(Registro):
     """
     campos = [
         CampoFixo(1, 'REG', '0005'),
-        Campo(2, 'FANTASIA'),
-        Campo(3, 'CEP'),
-        Campo(4, 'END'),
-        Campo(5, 'NUM'),
-        Campo(6, 'COMPL'),
-        Campo(7, 'BAIRRO'),
-        Campo(8, 'FONE'),
-        Campo(9, 'FAX'),
-        Campo(10, 'EMAIL'),
+        CampoAlfanumerico(2, 'FANTASIA', tamanho=60),
+        CampoAlfanumerico(3, 'CEP', obrigatorio=True, tamanho=8, somente_numeros=True),
+        CampoAlfanumerico(4, 'END', tamanho=60),
+        CampoAlfanumerico(5, 'NUM', tamanho=10),
+        CampoAlfanumerico(6, 'COMPL', tamanho=60),
+        CampoAlfanumerico(7, 'BAIRRO', tamanho=60),
+        CampoAlfanumerico(8, 'FONE', obrigatorio=True, tamanho=10, somente_numeros=True),
+        CampoAlfanumerico(9, 'FAX', obrigatorio=True, tamanho=10, somente_numeros=True),
+        Campo(10, 'EMAIL', obrigatorio=True),
     ]
 
 
@@ -74,19 +81,19 @@ class Registro0100(Registro):
     """
     campos = [
         CampoFixo(1, 'REG', '0100'),
-        Campo(2, 'NOME'),
-        Campo(3, 'CPF'),
-        Campo(4, 'CRC'),
-        Campo(5, 'CNPJ'),
-        Campo(6, 'CEP'),
-        Campo(7, 'END'),
-        Campo(8, 'NUM'),
-        Campo(9, 'COMPL'),
-        Campo(10, 'BAIRRO'),
-        Campo(11, 'FONE'),
-        Campo(12, 'FAX'),
+        CampoAlfanumerico(2, 'NOME', tamanho=100),
+        CampoCPF(3, 'CPF', obrigatorio=True),
+        CampoAlfanumerico(4, 'CRC', tamanho=15),
+        CampoCNPJ(5, 'CNPJ', obrigatorio=True),
+        CampoAlfanumerico(6, 'CEP', obrigatorio=True, tamanho=8, somente_numeros=True),
+        CampoAlfanumerico(7, 'END', tamanho=60),
+        CampoAlfanumerico(8, 'NUM', tamanho=10),
+        CampoAlfanumerico(9, 'COMPL', tamanho=60),
+        CampoAlfanumerico(10, 'BAIRRO', tamanho=60),
+        CampoAlfanumerico(11, 'FONE', obrigatorio=True, tamanho=10, somente_numeros=True),
+        CampoAlfanumerico(12, 'FAX', obrigatorio=True, tamanho=10, somente_numeros=True),
         Campo(13, 'EMAIL'),
-        Campo(14, 'COD_MUN'),
+        CampoAlfanumerico(14, 'COD_MUN', obrigatorio=True, tamanho=7),
     ]
 
 
@@ -96,18 +103,18 @@ class Registro0150(Registro):
     """
     campos = [
         CampoFixo(1, 'REG', '0150'),
-        Campo(2, 'COD_PART'),
-        Campo(3, 'NOME'),
-        Campo(4, 'COD_PAIS'),
-        Campo(5, 'CNPJ'),
-        Campo(6, 'CPF'),
-        Campo(7, 'IE'),
-        Campo(8, 'COD_MUN'),
-        Campo(9, 'SUFRAMA'),
-        Campo(10, 'END'),
-        Campo(11, 'NUM'),
-        Campo(12, 'COMPL'),
-        Campo(13, 'BAIRRO'),
+        CampoInteiro(2, 'COD_PART'),
+        CampoAlfanumerico(3, 'NOME', tamanho=100),
+        CampoAlfanumerico(4, 'COD_PAIS', tamanho=5),
+        CampoCNPJ(5, 'CNPJ'),
+        CampoCPF(6, 'CPF'),
+        CampoAlfanumerico(7, 'IE', tamanho=14),
+        CampoAlfanumerico(8, 'COD_MUN', obrigatorio=True, tamanho=7),
+        CampoAlfanumerico(9, 'SUFRAMA', tamanho=9),
+        CampoAlfanumerico(10, 'END', tamanho=60),
+        CampoAlfanumerico(11, 'NUM', tamanho=10),
+        CampoAlfanumerico(12, 'COMPL', tamanho=60),
+        CampoAlfanumerico(13, 'BAIRRO', tamanho=60),
     ]
 
 
@@ -129,8 +136,8 @@ class Registro0190(Registro):
     """
     campos = [
         CampoFixo(1, 'REG', '0190'),
-        Campo(2, 'UNID'),
-        Campo(3, 'DESCR'),
+        CampoAlfanumerico(2, 'UNID', tamanho=6),
+        CampoAlfanumerico(3, 'DESCR'),
     ]
 
 
@@ -140,14 +147,14 @@ class Registro0200(Registro):
     """
     campos = [
         CampoFixo(1, 'REG', '0200'),
-        Campo(2, 'COD_ITEM'),
+        CampoAlfanumerico(2, 'COD_ITEM', 60),
         Campo(3, 'DESCR_ITEM'),
         Campo(4, 'COD_BARRA'),
         Campo(5, 'COD_ANT_ITEM'),
-        Campo(6, 'UNID_INV'),
-        Campo(7, 'TIPO_ITEM'),
-        Campo(8, 'COD_NCM'),
-        Campo(9, 'EX_IPI'),
+        CampoAlfanumerico(6, 'UNID_INV', tamanho=6),
+        CampoAlfanumerico(7, 'TIPO_ITEM', tamanho=2),
+        CampoAlfanumerico(8, 'COD_NCM', tamanho=8, somente_numeros=True),
+        CampoAlfanumerico(9, 'EX_IPI', tamanho=3, somente_numeros=True),
         Campo(10, 'COD_GEN'),
         Campo(11, 'COD_LST'),
         Campo(12, 'ALIQ_ICMS'),
@@ -281,7 +288,7 @@ class Registro0990(Registro):
     """
     campos = [
         CampoFixo(1, 'REG', '0990'),
-        Campo(2, 'QTD_LIN_0'),
+        CampoNumerico(2, 'QTD_LIN_0'),
     ]
 
 
@@ -1303,7 +1310,7 @@ class RegistroC990(Registro):
     """
     campos = [
         CampoFixo(1, 'REG', 'C990'),
-        Campo(2, 'QTD_LIN_C'),
+        CampoNumerico(2, 'QTD_LIN_C'),
     ]
 
 
@@ -2010,7 +2017,7 @@ class RegistroD990(Registro):
     """
     campos = [
         CampoFixo(1, 'REG', 'D990'),
-        Campo(2, 'QTD_LIN_D'),
+        CampoNumerico(2, 'QTD_LIN_D'),
     ]
 
 
@@ -2290,7 +2297,7 @@ class RegistroE990(Registro):
     """
     campos = [
         CampoFixo(1, 'REG', 'E990'),
-        Campo(2, 'QTD_LIN_E'),
+        CampoNumerico(2, 'QTD_LIN_E'),
     ]
 
 
@@ -2390,7 +2397,7 @@ class RegistroG990(Registro):
     """
     campos = [
         CampoFixo(1, 'REG', 'G990'),
-        Campo(2, 'QTD_LIN_G'),
+        CampoNumerico(2, 'QTD_LIN_G'),
     ]
 
 
@@ -2452,7 +2459,7 @@ class RegistroH990(Registro):
     """
     campos = [
         CampoFixo(1, 'REG', 'H990'),
-        Campo(2, 'QTD_LIN_H'),
+        CampoNumerico(2, 'QTD_LIN_H'),
     ]
 
 
@@ -2562,7 +2569,7 @@ class RegistroK990(Registro):
     """
     campos = [
         CampoFixo(1, 'REG', 'K990'),
-        Campo(2, 'QTD_LIN_K'),
+        CampoNumerico(2, 'QTD_LIN_K'),
     ]
 
 
@@ -3054,7 +3061,7 @@ class Registro1990(Registro):
     """
     campos = [
         CampoFixo(1, 'REG', '1990'),
-        Campo(2, 'QTD_LIN_1'),
+        CampoNumerico(2, 'QTD_LIN_1'),
     ]
 
 
@@ -3085,7 +3092,7 @@ class Registro9990(Registro):
     """
     campos = [
         CampoFixo(1, 'REG', '9990'),
-        Campo(2, 'QTD_LIN_9'),
+        CampoNumerico(2, 'QTD_LIN_9'),
     ]
 
 
@@ -3095,5 +3102,5 @@ class Registro9999(Registro):
     """
     campos = [
         CampoFixo(1, 'REG', '9999'),
-        Campo(2, 'QTD_LIN'),
+        CampoNumerico(2, 'QTD_LIN'),
     ]

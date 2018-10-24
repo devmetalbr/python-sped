@@ -4,15 +4,15 @@
 from collections import OrderedDict
 from io import StringIO
 
-from .registros import RegistroIndefinido
+from sped.efd.icms_ipi.registros import Registro0000, Registro9999
 
 
 class ArquivoDigital(object):
     registros = None
     blocos = None
 
-    registro_abertura = RegistroIndefinido
-    registro_fechamento = RegistroIndefinido
+    registro_abertura = Registro0000
+    registro_fechamento = Registro9999
 
     def __init__(self):
         self._registro_abertura = self.registro_abertura()
