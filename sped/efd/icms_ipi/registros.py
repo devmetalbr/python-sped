@@ -168,8 +168,8 @@ class Registro0205(Registro):
     campos = [
         CampoFixo(1, 'REG', '0205'),
         Campo(2, 'DESCR_ANT_ITEM'),
-        Campo(3, 'DT_INI'),
-        Campo(4, 'DT_FIM'),
+        CampoData(3, 'DT_INI'),
+        CampoData(4, 'DT_FIM'),
         Campo(5, 'COD_ANT_ITEM'),
     ]
 
