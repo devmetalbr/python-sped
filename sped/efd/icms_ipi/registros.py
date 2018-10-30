@@ -2499,6 +2499,20 @@ class RegistroK200(Registro):
     ]
 
 
+class RegistroK210(Registro):
+    """
+    DESMONTAGEM DE MERCADORIAS
+    """
+    campos = [
+        CampoFixo(1, 'REG', 'K210'),
+        CampoData(2, 'DT_INI_OS'),
+        CampoData(3, 'DT_FIN_OS'),
+        CampoAlfanumerico(4, 'COD_DOC_OS', tamanho=30),
+        CampoAlfanumerico(5, 'COD_ITEM_ORI', tamanho=60),
+        CampoNumerico(6, 'QTD_ORI', precisao=3)
+    ]
+
+
 class RegistroK220(Registro):
     """
     OUTRAS MOVIMENTAÇÕES INTERNAS ENTRE MERCADORIAS
