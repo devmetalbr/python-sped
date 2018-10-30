@@ -228,8 +228,8 @@ class Registro0400(Registro):
     """
     campos = [
         CampoFixo(1, 'REG', '0400'),
-        Campo(2, 'COD_NAT'),
-        Campo(3, 'DESCR_NAT'),
+        CampoAlfanumerico(2, 'COD_NAT', tamanho=10, somente_numeros=True),
+        CampoAlfanumerico(3, 'DESCR_NAT'),
     ]
 
 
@@ -2407,7 +2407,7 @@ class RegistroH001(Registro):
     """
     campos = [
         CampoFixo(1, 'REG', 'H001'),
-        Campo(2, 'IND_MO V'),
+        Campo(2, 'IND_MOV'),
     ]
 
 
@@ -2417,8 +2417,8 @@ class RegistroH005(Registro):
     """
     campos = [
         CampoFixo(1, 'REG', 'H005'),
-        Campo(2, 'DT_INV'),
-        Campo(3, 'VL_INV'),
+        CampoData(2, 'DT_INV'),
+        CampoNumerico(3, 'VL_INV', precisao=2),
         Campo(4, 'MOT_INV'),
     ]
 
@@ -2431,13 +2431,14 @@ class RegistroH010(Registro):
         CampoFixo(1, 'REG', 'H010'),
         Campo(2, 'COD_ITEM'),
         Campo(3, 'UNID'),
-        Campo(4, 'QTD'),
-        Campo(5, 'VL_UNIT'),
-        Campo(6, 'VL_ITEM'),
+        CampoNumerico(4, 'QTD', precisao=3),
+        CampoNumerico(5, 'VL_UNIT', precisao=6),
+        CampoNumerico(6, 'VL_ITEM', precisao=2),
         Campo(7, 'IND_PROP'),
         Campo(8, 'COD_PART'),
         Campo(9, 'TXT_COMPL'),
         Campo(10, 'COD_CTA'),
+        CampoNumerico(11, 'VL_ITEM_IR', precisao=2),
     ]
 
 
@@ -2459,7 +2460,7 @@ class RegistroH990(Registro):
     """
     campos = [
         CampoFixo(1, 'REG', 'H990'),
-        CampoNumerico(2, 'QTD_LIN_H'),
+        CampoNumerico(2, 'QTD_LIN_H')
     ]
 
 
@@ -2469,7 +2470,7 @@ class RegistroK001(Registro):
     """
     campos = [
         CampoFixo(1, 'REG', 'K001'),
-        Campo(2, 'IND_MOV'),
+        Campo(2, 'IND_MOV')
     ]
 
 
@@ -2480,7 +2481,7 @@ class RegistroK100(Registro):
     campos = [
         CampoFixo(1, 'REG', 'K100'),
         CampoData(2, 'DT_INI'),
-        CampoData(3, 'DT_FIN'),
+        CampoData(3, 'DT_FIN')
     ]
 
 
@@ -2492,9 +2493,9 @@ class RegistroK200(Registro):
         CampoFixo(1, 'REG', 'K200'),
         CampoData(2, 'DT_EST'),
         Campo(3, 'COD_ITEM'),
-        Campo(4, 'QTD'),
-        Campo(5, 'IND_EST'),
-        Campo(6, 'COD_PART'),
+        CampoNumerico(4, 'QTD', precisao=3),
+        CampoAlfanumerico(5, 'IND_EST', tamanho=1),
+        Campo(6, 'COD_PART')
     ]
 
 
@@ -2507,7 +2508,7 @@ class RegistroK220(Registro):
         CampoData(2, 'DT_MOV'),
         Campo(3, 'COD_ITEM_ORI'),
         Campo(4, 'COD_ITEM_DEST'),
-        Campo(5, 'QTD'),
+        Campo(5, 'QTD')
     ]
 
 
@@ -2521,7 +2522,7 @@ class RegistroK230(Registro):
         CampoData(3, 'DT_FIN_OP'),
         Campo(4, 'COD_DOC_OP'),
         Campo(5, 'COD_ITEM'),
-        Campo(6, 'QTD_ENC'),
+        Campo(6, 'QTD_ENC')
     ]
 
 
