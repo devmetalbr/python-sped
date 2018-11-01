@@ -2561,7 +2561,7 @@ class RegistroK250(Registro):
         CampoFixo(1, 'REG', 'K250'),
         CampoData(2, 'DT_PROD'),
         Campo(3, 'COD_ITEM'),
-        Campo(4, 'QTD'),
+        CampoNumerico(4, 'QTD', 3),
     ]
 
 
@@ -2573,7 +2573,7 @@ class RegistroK255(Registro):
         CampoFixo(1, 'REG', 'K255'),
         CampoData(2, 'DT_CONS'),
         Campo(3, 'COD_ITEM'),
-        Campo(4, 'QTD'),
+        CampoNumerico(4, 'QTD', 3),
         Campo(5, 'COD_INS_SUBST'),
     ]
 
