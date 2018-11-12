@@ -30,7 +30,7 @@ class Registro0000(Registro):
         CampoAlfanumerico(10, 'IE', tamanho=14, somente_numeros=True),
         CampoAlfanumerico(11, 'COD_MUN', obrigatorio=True, tamanho=14),
         Campo(12, 'IM'),
-        CampoAlfanumerico(13, 'SUFRAMA', obrigatorio=True, tamanho=9),
+        CampoAlfanumerico(13, 'SUFRAMA', tamanho=9),
         CampoAlfanumerico(14, 'IND_PERFIL', tamanho=1),
         CampoAlfanumerico(15, 'IND_ATIV', tamanho=1),
     ]
@@ -59,7 +59,7 @@ class Registro0005(Registro):
         CampoAlfanumerico(6, 'COMPL', tamanho=60),
         CampoAlfanumerico(7, 'BAIRRO', tamanho=60),
         CampoAlfanumerico(8, 'FONE', obrigatorio=True, tamanho=10, somente_numeros=True),
-        CampoAlfanumerico(9, 'FAX', obrigatorio=True, tamanho=10, somente_numeros=True),
+        CampoAlfanumerico(9, 'FAX', tamanho=10, somente_numeros=True),
         Campo(10, 'EMAIL', obrigatorio=True),
     ]
 
@@ -91,7 +91,7 @@ class Registro0100(Registro):
         CampoAlfanumerico(9, 'COMPL', tamanho=60),
         CampoAlfanumerico(10, 'BAIRRO', tamanho=60),
         CampoAlfanumerico(11, 'FONE', obrigatorio=True, tamanho=10, somente_numeros=True),
-        CampoAlfanumerico(12, 'FAX', obrigatorio=True, tamanho=10, somente_numeros=True),
+        CampoAlfanumerico(12, 'FAX', tamanho=10, somente_numeros=True),
         Campo(13, 'EMAIL'),
         CampoAlfanumerico(14, 'COD_MUN', obrigatorio=True, tamanho=7),
     ]
@@ -2575,6 +2575,21 @@ class RegistroK255(Registro):
         Campo(3, 'COD_ITEM'),
         CampoNumerico(4, 'QTD', 3),
         Campo(5, 'COD_INS_SUBST'),
+    ]
+
+
+class RegistroK280(Registro):
+    """
+    CORREÇÃO DE APONTAMENTO - ESTOQUE ESCRITURADO
+    """
+    campos = [
+        CampoFixo(1, 'REG', 'K280'),
+        CampoData(2, 'DT_EST'),
+        CampoAlfanumerico(3, 'COD_ITEM', tamanho=60),
+        CampoNumerico(4, 'QTD_COR_POS', 3),
+        CampoNumerico(5, 'QTD_COR_NEG', 3),
+        CampoAlfanumerico(6, 'IND_EST', tamanho=1),
+        CampoAlfanumerico(7, 'COD_PART', tamanho=60),
     ]
 
 

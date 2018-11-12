@@ -114,7 +114,7 @@ class CampoAlfanumerico(Campo):
 
     def set(self, registro, valor):
         valor = valor or ''
-        if isinstance(valor, (str, unicode)):
+        if isinstance(valor, string_types):
             valor = unidecode(valor)
         if self._somente_numeros:
             valor = re.sub('[\D]', '', valor)
