@@ -64,7 +64,7 @@ setup(
         'Programming Language :: Python :: 3.4',
     ],
     keywords='sped fiscal contábil contabilidade receita federal',
-    install_requires=['six'],
+    install_requires=['six', 'Unidecode'],
     tests_require=['pytest'],
     cmdclass={'test': PyTest},
 )
